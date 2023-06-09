@@ -1,0 +1,137 @@
+create table [Release Forms]
+(
+    ID int not null
+    , Form varchar(50) primary KEY 
+)
+
+create table [Manufacturers of medicines]
+(
+    ID int identity(1, 1)
+    , Country varchar(50)
+    , City varchar(50)
+    , Manufacturers varchar(50) primary key 
+)
+
+create table Warehouse
+(
+    ID int primary KEY identity(1, 1)
+    , [Name] varchar(50)
+    , [Release Forms] varchar(50) foreign key references [Release Forms](Form)
+    , Dosage float
+    , Price float
+    , Quantity float
+    , Manufacturers varchar(50) foreign key references [Manufacturers of medicines](Manufacturers)
+)
+
+create table Pharmacy
+(
+    ID int primary KEY not null
+    , [Address] varchar(50)
+    , [Working hours] float
+)
+ 
+create table Apothecary
+(
+    ID int primary KEY identity(1, 1)
+    , [Name] varchar(50)
+    , [Working hours] float null
+    , PharmacyID int foreign key references Pharmacy(ID)
+)
+
+
+insert [Release Forms]
+    (ID, Form)
+values 
+    (101, 'solid')
+    , (102, 'granules')
+    , (201, 'liquid')
+    , (130, 'soft')
+    , (322, 'aerosols')
+
+insert [Manufacturers of medicines]
+    (Country,  Manufacturers)
+values
+    ('Spain', 'JOHNSON & JOHNSON')
+    , ('Croatia', 'JADRAN')
+    , ('Russia', 'ACINO RUS')
+    , ('Russia', 'ABBOTT LABORATORIES')
+    , ('France', 'INNOTEK')
+    , ('France', 'OTISIPHARM')
+    , ('India', 'DR.REDDIS')
+    , ('Russia', 'MATERIA MEDICA')
+    , ('Bulgaria', 'TEVA')
+    , ('Hungary', 'SANOFI AVENTIS GROUP')
+    , ('Germany', 'QUAISSER PHARMA')
+    , ('Germany', 'CREVEL')
+    , ('Germany', 'Bayer')
+    , ('Russia', 'Veropharm')
+    , ('Russia', 'ASTRAZENECA')
+    , ('Netherlands', 'Astellas')
+    , ('Slovenia', 'KRKA')
+    , ('Russia', 'Amgen')
+    , ('Russia', 'PHARMSINTEZ')
+    , ('Russia', 'SANDOZ')
+
+
+insert Warehouse
+    ([Name], [Release Forms], Dosage, Price, Quantity, Manufacturers)
+values
+    ('Tizin PANTHENOL', 'aerosols', 5, 242, 100, 'JOHNSON & JOHNSON')
+    , ('Dramina ', 'solid', 50, 196, 50, 'JADRAN')
+    , ('Doppelhertz active', 'liquid', 500 , 440, 30, 'QUAISSER PHARMA')                                   
+    , ('TIME FACTOR', 'granules', 10, 564, 5, 'ACINO RUS')                                              
+    , ('Creon', 'granules', 5, 1098, 45, 'ABBOTT LABORATORIES')
+    , ('Phlebodia', 'solid', 600 , 1860, 17, 'INNOTEK')
+    , ('Rinostop AquaSoft', 'aerosols', 125, 415 , 25, 'OTISIPHARM')
+    , ('Allerway', 'solid', 5, 452, 234, 'DR.REDDIS')
+    , ('Rengalin', 'solid', 10000, 237, 74, 'MATERIA MEDICA')
+    , ('Almagel A', 'liquid', 170, 281, 33, 'TEVA')
+    , ('No-shpa forte', 'solid', 80, 109, 60, 'SANOFI AVENTIS GROUP')
+    , ('Essentiale forte N', 'granules', 300 , 2496, 12, 'SANOFI AVENTIS GROUP')
+    , ('Magne B6', 'solid', 48, 1249, 15, 'SANOFI AVENTIS GROUP')
+    , ('Valokordin', 'liquid', 18.4, 150, 100, 'CREVEL')
+    , ('Forosa', 'solid', 70, 803, 14, 'SANDOZ')
+    , ('Posterized', 'soft', 387.1, 450, 22, 'ACINO RUS')
+    , ('Nalgesin', 'solid', 275, 371, 9, 'KRKA')
+    , ('Nolpaza', 'solid', 20, 505, 23, 'KRKA')
+    , ('Horsepower', 'liquid', 10, 242, 36, 'ACINO RUS')
+
+
+insert Pharmacy
+    (ID, [Address], [Working hours])
+values
+    (14, 'Nizhnevartovsk, Druzhby narodov, 29', 12)
+    , (23, 'Nizhnevartovsk, Lenina 11/1', 12)
+    , (11, 'Nizhnevartovsk, Neftyanikov, 44', 14)
+    , (9, 'Nizhnevartovsk, Druzhby narodov, 12a', 13)
+    , (1, 'Nizhnevartovsk, Internacionalnaya, 12v', 24)
+
+
+insert Apothecary
+    (ID, [Name], [Working hours])
+values
+    (14, 'Peter G.', 8)
+    , (23, 'Ivan A.', 4.5)
+    , (11, 'Vadim N.', null)
+    , (9, 'Danil N.', 10)
+    , (1, 'Svetlana S.', 2.5)
+    , (23, 'Anna A.', 5.5)
+    , (11, 'George P.', null)
+    , (9, 'Alexey P.', 10)
+    , (1, 'Kirill E.', 6)
+    , (23, 'Sofia R.', 3)
+    , (11, 'Nikita G.', 7)
+    , (9, 'Eva D.', 10)
+    , (1, 'Yaroslav K.', 6)
+    , (23, 'Agata S.', 4.5)
+    , (11, 'Timofey L.', 2)
+    , (9, 'Ulyana Z.', 10)
+    , (1, 'Artem S.', 6.5)
+    , (23, 'Evangeline B.', 7.5)
+    , (11, 'Victoria D.', 2)
+    , (9, 'Nicole T.', 10)
+
+
+
+
+
